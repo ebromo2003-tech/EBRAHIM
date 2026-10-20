@@ -1198,7 +1198,7 @@ footer{
 .tool-marquee:hover .tool-belt,.tool-marquee:focus-within .tool-belt{animation-play-state:paused}
 @keyframes tool-drift{to{transform:translateX(-50%)}}
 body[data-track=developer] .tool-chip,body[data-track=developer] .skill-group{background:#eef1f7}
-body[data-track=developer] .project-tags{font-family:'Chivo Mono',monospace;font-size:12px}
+
 @media(max-width:1370px){.header-contact.cta-nav{display:none}.nav-wrap{gap:14px}.nav-links{gap:4px}}
 @media(min-width:768px) and (max-width:1100px){.discipline h2{font-size:clamp(42px,6vw,67px)}.hero-stage{grid-template-columns:1fr 1.15fr 1fr}.nav-wrap{flex-wrap:wrap;justify-content:center;padding-block:16px}.brand{margin-right:auto}.nav-links{flex-wrap:wrap;justify-content:center}.nav-track-switch button{font-size:11px}.developer-media{padding:20px}.dev-cover-main h3{font-size:25px}.dev-cover-main{padding:12px 0}.dev-cover-top>.mono{max-width:95px}.org-logo,.partner-logo{width:110px;height:30px}}
 @media(max-width:767px){
@@ -1214,27 +1214,12 @@ body[data-track=developer] .project-tags{font-family:'Chivo Mono',monospace;font
 @media(prefers-reduced-motion:reduce){
  .tool-belt{animation:none!important;width:100%}.tool-marquee{overflow:visible;mask-image:none;padding-inline:20px}.tool-set{min-width:0!important;width:100%;flex-wrap:wrap;justify-content:center;padding:0;gap:12px}.tool-set[aria-hidden=true]{display:none}.tool-chip:hover{transform:none}.role-switch{transition:none}
 }
-body:not(.js) .track-menu,body:not(.js) 
+body:not(.js) .track-menu{display:none}
+
 /* Fade the portrait perimeter into the shared page instead of exposing a square image edge. */
 .portrait-frame{mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent),linear-gradient(to bottom,transparent,#000 7%,#000 83%,transparent);mask-composite:intersect}
 body:not(.js) .hero-stage{--portrait-reveal:100%}
-/* Intentional project paths, grouped beside one coherent portrait. */
-.hero-stage{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:18px 64px;min-height:420px;padding:10px 40px 32px;align-items:stretch}
-.hero-stage .portrait{grid-column:1;grid-row:1/3;width:100%;max-width:420px;justify-self:center;align-self:center;margin:0}
-.hero-stage .discipline,.hero-stage .discipline.right{grid-column:2;grid-row:1;align-self:end;display:block;padding:0;text-align:left;border:0;background:transparent}
-.hero-stage .discipline.right{grid-row:2;align-self:start}
-.discipline h2{font-size:inherit;letter-spacing:normal;line-height:1}
-.hero-stage .role-switch{display:block;width:100%;padding:22px 26px;border:1px solid var(--line);border-radius:14px;background:#ffffff50;text-align:left;letter-spacing:normal;line-height:1.4;color:var(--ink);transition:border-color .22s var(--ease),background .22s var(--ease),box-shadow .22s var(--ease)}
-.role-switch::after{display:none}
-.hero-stage .role-switch:hover,.hero-stage .role-switch:focus-visible{transform:none;border-color:var(--action);background:var(--blue-2)}
-.hero-stage .role-switch[aria-pressed=true]{border-color:var(--action);background:var(--blue-2);box-shadow:inset 4px 0 0 var(--action)}
-.path-card-top,.path-card-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px;font-weight:400;color:var(--ink-soft)}
-.path-card-top .mono{font-size:10px;letter-spacing:.05em}
-.path-count{font-size:11px;white-space:nowrap}
-.path-title{display:block;font-size:clamp(32px,3.4vw,48px);line-height:1.15;letter-spacing:-.055em;font-weight:600;margin:12px 0 16px}
-.path-card-bottom{color:var(--action)}
-.path-card-bottom>span:last-child{font-size:25px;line-height:1;transition:transform .22s var(--ease)}
-.role-switch:hover .path-card-bottom>span:last-child{transform:translate(3px,-3px)}
+
 .tool-marquee{padding-top:12px;padding-bottom:12px}
 .tool-set{align-items:center;gap:24px;padding-right:24px}
 .tool-chip{width:144px;height:144px;min-width:144px;flex:0 0 144px;aspect-ratio:1;border-radius:50%;padding:22px 12px;flex-direction:column;justify-content:center;gap:14px;white-space:normal;text-align:center;line-height:1.3;font-size:14px;font-weight:500;background:linear-gradient(145deg,#ffffffbb,var(--blue-2));border:1px solid var(--blue-3);box-shadow:inset 0 0 0 6px #ffffff35,0 6px 18px #18264505}
@@ -1242,15 +1227,31 @@ body:not(.js) .hero-stage{--portrait-reveal:100%}
 .tool-chip svg{width:34px;height:34px;transition:transform .22s var(--ease)}
 .tool-chip:hover svg{transform:scale(1.07)}
 body[data-track=developer] .tool-chip{background:linear-gradient(145deg,#ffffffcc,#e7ecf5)}
-@media(min-width:768px) and (max-width:1100px){.hero-stage{grid-template-columns:1fr 1fr;gap:16px 32px;padding-inline:0;min-height:360px}.hero-stage .role-switch{padding:20px}.path-card-top .mono{font-size:9px}.path-count{font-size:10px}}
+
+
+/* Restore the centered portrait; selected discipline alone carries the heavier weight. */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hero-stage{display:grid;grid-template-columns:1fr 1.02fr 1fr;grid-template-rows:auto;gap:0 24px;min-height:460px;margin-top:0;padding:0;align-items:center}
+.hero-stage .portrait{grid-column:2;grid-row:1;max-width:none;width:100%;margin:0;align-self:center}
+.hero-stage .discipline,.hero-stage .discipline.right{display:flex;grid-column:1;grid-row:1;align-self:stretch;justify-content:center;padding:0;border:0;border-radius:0;background:none;text-align:left}
+.hero-stage .discipline.right{grid-column:3;text-align:right}
+.hero-stage .discipline h2{font-size:clamp(48px,6.8vw,108px);letter-spacing:-.07em;line-height:1.1;font-weight:400}
+.hero-stage .role-switch{display:inline-block;width:auto;min-height:44px;margin:0;padding:10px 0;border:0;border-radius:0;background:none;box-shadow:none;font:inherit;font-weight:400;letter-spacing:inherit;line-height:inherit;color:var(--ink);text-align:inherit;transition:color .22s var(--ease)}
+.hero-stage .role-switch[aria-pressed=true]{font-weight:700;color:var(--action)}
+.hero-stage .role-switch::after{display:block;height:2px;opacity:.65}
+.hero-stage .role-switch[aria-pressed=true]::after{transform:scaleX(1)}
+.hero-stage .role-switch:hover,.hero-stage .role-switch:focus-visible{transform:none;background:none;box-shadow:none}
+.project-tags{font-family:'Mona Sans',Arial,sans-serif;gap:8px;align-items:center}
+.project-tags span{display:inline-flex;align-items:center;justify-content:center;font:400 12px/1.5 'Mona Sans',Arial,sans-serif;padding:5px 12px;min-height:28px;background:var(--blue-1);color:var(--ink);border-radius:30px;white-space:normal}
+.project-date{text-transform:none;letter-spacing:0}
+.dev-cover-main{padding:24px 0}
+@media(min-width:768px) and (max-width:1100px){.hero-stage{grid-template-columns:1fr 1.15fr 1fr;min-height:360px;gap:0 16px}.hero-stage .discipline h2{font-size:clamp(40px,5.8vw,66px)}}
 @media(max-width:767px){
- .hero-stage{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:14px 12px;padding:0;min-height:0}
- .hero-stage .discipline,.hero-stage .discipline.right{grid-column:1;grid-row:1;align-self:stretch}.hero-stage .discipline.right{grid-column:2;grid-row:1;align-self:stretch}
- .hero-stage .portrait{grid-column:1/-1;grid-row:2;max-width:430px;width:100%;margin:0}
- .hero-stage .role-switch{height:100%;padding:16px 13px;border-radius:12px}
- .path-card-top{display:block}.path-card-top .mono{display:block;font-size:8px;letter-spacing:0}.path-count{display:block;margin-top:6px;font-size:10px}.path-title{font-size:clamp(26px,7vw,32px);margin:12px 0}.path-card-bottom{font-size:10px;gap:4px;align-items:end}.path-card-bottom>span:last-child{font-size:20px}.track-prompt span{max-width:25ch}
+ .hero-stage{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px 16px;min-height:0;margin-top:6px}
+ .hero-stage .discipline,.hero-stage .discipline.right{grid-column:1;grid-row:1;align-self:stretch;text-align:left}.hero-stage .discipline.right{grid-column:2;text-align:right}
+ .hero-stage .discipline h2{font-size:clamp(31px,8vw,50px);line-height:1.2}
+ .hero-stage .portrait{grid-column:1/-1;grid-row:2;width:100%;max-width:430px;justify-self:center}
  .tool-chip{width:116px;height:116px;min-width:116px;flex-basis:116px;padding:16px 9px;font-size:12px;gap:9px}.tool-chip>span{max-width:95px;min-height:30px}.tool-chip svg{width:28px;height:28px}.tool-set{gap:16px;padding-right:16px}
 }
-@media(prefers-reduced-motion:reduce){.tool-chip:hover svg,.role-switch:hover .path-card-bottom>span:last-child{transform:none}}
-.hero-stage .discipline h2{height:100%}
-.path-card-bottom{min-height:28px}
+@media(prefers-reduced-motion:reduce){.tool-chip:hover svg{transform:none}}
+.sr-only{min-height:0!important;max-height:1px!important}

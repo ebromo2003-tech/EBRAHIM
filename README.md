@@ -50,3 +50,6 @@ Detailed scripts, screenshots and results are in ignored `.qa/`. Lighthouse scor
 
 
 The hero now pairs a generous portrait with two complete, clickable project-path panels. Each names the discipline, its four projects and a clear Explore work action. Tools use circular icon-and-label medallions; the separate Pause motion button is removed at the owner’s request. Hover/focus still pauses the rail and reduced motion still produces a static list.
+
+
+The hero restores Designer / centered portrait / Developer. Only the committed role is bold; hover previews do not change font weight. Decorative hero prompts, category micro-labels, project-cover indexes and duplicate cover tags are removed. The selection announcement is screen-reader-only. Both tracks share the same tag font, size, padding, height and radius. Circular tools remain.
