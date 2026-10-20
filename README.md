@@ -53,3 +53,6 @@ The hero now pairs a generous portrait with two complete, clickable project-path
 
 
 The hero restores Designer / centered portrait / Developer. Only the committed role is bold; hover previews do not change font weight. Decorative hero prompts, category micro-labels, project-cover indexes and duplicate cover tags are removed. The selection announcement is screen-reader-only. Both tracks share the same tag font, size, padding, height and radius. Circular tools remain.
+
+
+Track switching uses opacity only. A hidden inert measurement tree reserves the maximum natural size of corresponding project rows, copy slots, tool section and skills grid for both tracks at each viewport/font change. Track selection performs no measuring, scroll correction or transform animation. The hero uses zero-minimum grid columns to prevent bold labels from resizing the portrait. Developer cover titles are centered in the media.

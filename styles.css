@@ -1255,3 +1255,26 @@ body[data-track=developer] .tool-chip{background:linear-gradient(145deg,#ffffffc
 }
 @media(prefers-reduced-motion:reduce){.tool-chip:hover svg{transform:none}}
 .sr-only{min-height:0!important;max-height:1px!important}
+
+/* Track selection changes content, never the page geometry. */
+html{scrollbar-gutter:stable}
+main{overflow-anchor:none}
+.hero-stage{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr) minmax(0,1fr)}
+.hero-stage .discipline{min-width:0}
+.hero-stage .discipline h2{width:100%;font-size:clamp(48px,6.3vw,100px)}
+.hero-stage .role-switch{width:100%}
+.project.reveal-enter,.skill-group.reveal-enter{animation:none}
+.portfolio-layout-measure{position:fixed;left:-100000px;top:0;visibility:hidden;pointer-events:none;contain:layout style;z-index:-1}
+.portfolio-layout-measure *{animation:none!important;transition:none!important}
+.developer-media{display:grid;place-items:center}
+.dev-cover-top{position:absolute;top:28px;left:28px;right:28px}
+.dev-cover-main{width:100%;max-width:88%;padding:0;text-align:center;align-self:center;justify-self:center}
+.dev-cover-main h3{margin:0 0 12px}
+.dev-cover-main p{margin:0 auto;max-width:40ch}
+@media(min-width:768px) and (max-width:1100px){.hero-stage{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr)}.hero-stage .discipline h2{font-size:clamp(40px,5.8vw,66px)}.dev-cover-top{top:20px;left:20px;right:20px}}
+@media(max-width:767px){.hero-stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.hero-stage .discipline h2{font-size:clamp(30px,7.7vw,48px)}.dev-cover-top{top:14px;left:18px;right:18px}.dev-cover-top .org-logo,.dev-cover-top .partner-logo{height:22px}.dev-cover-main{max-width:88%;padding:0}.dev-cover-main h3{font-size:clamp(18px,5vw,28px);margin-bottom:8px}.dev-cover-main p{font-size:10px}}
+.project{grid-template-columns:minmax(0,1.65fr) minmax(0,1fr)}
+.project:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.65fr)}
+.project-info{min-width:0}
+@media(min-width:768px) and (max-width:1100px){.project{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}.project:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)}}
+@media(max-width:767px){.project,.project:nth-child(even){grid-template-columns:minmax(0,1fr)}}

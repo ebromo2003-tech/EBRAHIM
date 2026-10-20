@@ -113,10 +113,6 @@ function restoreActiveTrack() {
 }
 function setPortfolioTrack(track, { persist = true, announce = true, animate = true, committed = true } = {}) {
   if (!portfolioData[track]) return;
-  // Anchor the section the visitor is reading when the two project lists differ in height.
-  const anchors = [...document.querySelectorAll('main > section')];
-  const readingSection = anchors.filter(node => node.getBoundingClientRect().top <= 140).at(-1);
-  const oldTop = readingSection?.getBoundingClientRect().top;
   trackState.activeTrack = track;
   trackState.committed = committed;
   trackState.previewTrack = null;
@@ -127,7 +123,7 @@ function setPortfolioTrack(track, { persist = true, announce = true, animate = t
     panel.getAnimations().forEach(animation => animation.cancel());
     panel.hidden = panel.dataset.trackPanel !== track;
     if (!panel.hidden && animate && !motionPreference.matches) {
-      panel.animate([{ opacity: .25, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 320, easing: 'cubic-bezier(.2,.8,.2,1)' });
+      panel.animate([{ opacity: .35 }, { opacity: 1 }], { duration: 320, easing: 'cubic-bezier(.2,.8,.2,1)' });
     }
   });
   document.querySelector('#projects-title').textContent = data.heading;
@@ -138,9 +134,6 @@ function setPortfolioTrack(track, { persist = true, announce = true, animate = t
   if (announce) document.querySelector('.track-status').textContent = `${track === 'designer' ? 'Designer' : 'Developer'} portfolio selected`;
   document.querySelector('#hero-portrait').setAttribute('aria-label', `Ebrahim Ali — ${track} portrait`);
   restoreActiveTrack();
-  if (readingSection && readingSection.id !== 'home' && oldTop != null) {
-    window.scrollBy({ top: readingSection.getBoundingClientRect().top - oldTop, behavior: 'instant' });
-  }
   if (persist) {
     try { sessionStorage.setItem('portfolio-track', track); } catch {}
     const url = new URL(location.href);
@@ -232,3 +225,60 @@ if ('IntersectionObserver' in window) {
     document.querySelectorAll('.project, .skill-group, .about-grid').forEach(item => revealObserver.observe(item));
   }
 }
+
+// Reserve the larger natural layout of each track once per viewport, never on a click.
+// A hidden inert measurement tree avoids exposing the alternate content or moving the live page.
+let portfolioLayoutFrame = 0;
+function stabilizePortfolioLayout() {
+  const main = document.querySelector('main');
+  const stage = document.createElement('div');
+  stage.className = 'portfolio-layout-measure';
+  stage.style.width = main.getBoundingClientRect().width + 'px';
+  stage.setAttribute('aria-hidden', 'true');
+  stage.inert = true;
+  const copy = main.cloneNode(true);
+  copy.removeAttribute('id');
+  copy.querySelectorAll('[data-layout-slot]').forEach(node => { node.style.minHeight = ''; node.removeAttribute('data-layout-slot'); });
+  stage.append(copy);
+  document.body.append(stage);
+  try {
+    const tracks = Object.keys(portfolioData);
+    const select = track => {
+      copy.querySelectorAll('[data-track-panel]').forEach(node => node.hidden = node.dataset.trackPanel !== track);
+      copy.querySelector('#projects-title').textContent = portfolioData[track].heading;
+      copy.querySelector('#projects .section-head p').textContent = portfolioData[track].summary;
+      copy.querySelector('[data-tools-description]').textContent = portfolioData[track].toolsCopy;
+      copy.querySelector('[data-skills-description]').textContent = portfolioData[track].skillsCopy;
+      copy.querySelector('[data-hero-copy]').textContent = portfolioData[track].heroCopy;
+    };
+    const reserve = (selector, size) => {
+      main.querySelectorAll(selector).forEach(node => {
+        node.style.minHeight = Math.ceil(size) + 'px';
+        node.dataset.layoutSlot = '';
+      });
+      copy.querySelectorAll(selector).forEach(node => node.style.minHeight = Math.ceil(size) + 'px');
+    };
+    for (const selector of ['.hero-copy>p', '#projects .section-head h2', '#projects .section-head>p', '.tool-section .section-head>p', '#skills .section-head>p']) {
+      const sizes = tracks.map(track => { select(track); return copy.querySelector(selector)?.getBoundingClientRect().height || 0; });
+      reserve(selector, Math.max(...sizes));
+    }
+    // Corresponding project rows keep the exact same media geometry and vertical rhythm.
+    for (let index = 0; index < 4; index++) {
+      const sizes = tracks.map(track => { select(track); return copy.querySelector('#'+track+'-projects').children[index].getBoundingClientRect().height; });
+      for (const track of tracks) reserve('#'+track+'-projects > .project:nth-child('+(index+1)+')', Math.max(...sizes));
+    }
+    for (const selector of ['.skills-grid', '.tool-section']) {
+      const sizes = tracks.map(track => { select(track); return copy.querySelector(selector).getBoundingClientRect().height; });
+      reserve(selector, Math.max(...sizes));
+    }
+  } finally { stage.remove(); }
+}
+function schedulePortfolioLayout() {
+  cancelAnimationFrame(portfolioLayoutFrame);
+  portfolioLayoutFrame = requestAnimationFrame(stabilizePortfolioLayout);
+}
+stabilizePortfolioLayout();
+window.addEventListener('resize', schedulePortfolioLayout, { passive: true });
+motionPreference.addEventListener('change', schedulePortfolioLayout);
+document.fonts?.ready.then(schedulePortfolioLayout);
+Promise.all(criticalImages.map(imageReady)).then(schedulePortfolioLayout);
