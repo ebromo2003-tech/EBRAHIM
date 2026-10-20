@@ -1287,3 +1287,10 @@ main{overflow-anchor:none}
 .cover-reference-footer>span:last-child{font:24px/1 Arial}
 @media(max-width:1100px) and (min-width:768px){.cover-reference-footer{left:20px;right:20px;bottom:16px;padding-top:10px}.cover-reference-label{font-size:9px;margin-bottom:10px}.cover-reference-footer{font-size:10px}}
 @media(max-width:767px){.cover-reference-label{font-size:8px;margin-bottom:6px}.cover-reference-footer{left:18px;right:18px;bottom:10px;padding-top:7px;font-size:9px}.cover-reference-footer>span:last-child{font-size:18px}}
+
+/* All Developer covers share one fixed title anchor and the reference typography. */
+.developer-media .dev-cover-main,.dev-health .dev-cover-main{position:absolute;top:38%;left:28px;right:28px;width:auto;max-width:none;padding:0;text-align:left;align-self:auto;justify-self:auto}
+.developer-media .dev-cover-main p{margin-inline:0;max-width:none}
+@media(min-width:768px) and (max-width:1100px){.developer-media .dev-cover-main,.dev-health .dev-cover-main{left:20px;right:20px;top:35%}}
+@media(max-width:767px){.developer-media .dev-cover-main,.dev-health .dev-cover-main{left:18px;right:18px;top:31%}.developer-media .dev-cover-main h3{font-size:clamp(16px,4.5vw,24px)}}
+@media(min-width:768px) and (max-width:1100px){.developer-media .dev-cover-main,.dev-health .dev-cover-main{top:31%}.developer-media .dev-cover-main h3{font-size:clamp(16px,2vw,22px);margin-bottom:8px}.developer-media .dev-cover-main p{font-size:10px;line-height:1.45}}
