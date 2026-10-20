@@ -111,3 +111,10 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Organization logos identify project affiliations; ownership remains with the respective organizations. Sources:
+- MoH: https://www.moh.gov.bh/Content/Images/mohLogoHL.png
+- iGA: https://www.iga.gov.bh/en/images/logo-IGA.png
+- BQA: https://www.bqa.gov.bh/wp-content/uploads/2024/10/BQA-Horizontal-Logo-with-Descriptor__BQA-Horizontal-Logo-with-Descriptor-2-e1728813697321.png
+- UOB: https://www.uob.edu.bh/wp-content/uploads/site-prod/uploads/UOB-new-logo.png

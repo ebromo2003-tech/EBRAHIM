@@ -1,56 +1,49 @@
-# Ebrahim Ali — Portfolio
+# Ebrahim Ali — Designer & Developer portfolio
 
-A one-page, buildless portfolio. Open `index.html` or `Ebrahim Portfolio.html` to view it locally. Keep the supplied images and PDF beside the HTML files.
+Production: https://ebromo2003-tech.github.io/EBRAHIM/
+Repository: ebromo2003-tech/EBRAHIM
 
-Branding uses `Glossy Blue Ribbon Loop Emblem.png` in the header, footer and favicon. The logo is displayed with its original proportions and without cropping. The Document Organizer banner and Prototype button both link to the Figma PROJECT-1 prototype (`dua4YL4MAZnrSSY4bpByHo`).
+A static, single-page portfolio using HTML, CSS and vanilla JavaScript. No build step or runtime dependencies are required. `index.html` is the published entry; `Ebrahim Portfolio.html` is kept identical for the existing local workflow.
 
-## Editing
+## Portfolio paths
 
-- `index.html`: accessible content, project destinations, skills and contact details. All content works without JavaScript.
-- `Ebrahim Portfolio.html`: identical compatibility entry point for the original filename. After editing the HTML, copy `index.html` to this file.
-- `styles.css`: palette, typography, component styles, responsive layouts and reduced-motion rules.
-- `script.js`: mobile menu, section navigation state and optional entry animations.
+The hero is the primary Designer/Developer selector. Hover or keyboard focus previews a portrait; click, Enter or Space commits the track. A compact navigation selector remains available on desktop and inside the mobile menu. A central `trackState` in `script.js` separates preview and active selection. `portfolioData` holds copy and structured references to semantic HTML projects, tools and skills.
 
-The portrait initially shows half `Painterly Gulf Portrait with Blue Brushstrokes.png` and half `1778496923520.png`. The entire left half of the hero selects the artwork; the right half selects the photo. Leaving the hero restores the split unless a role button still has keyboard focus. Tapping either half also selects its image on touch devices. Both layers share one square crop frame and an inset border.
+The chosen track updates project content, headings, hero copy, tools, skills, portrait and accessible active states. The choice is retained in sessionStorage; `?track=designer` and `?track=developer` support direct links. Fresh desktop visits show a feathered 50/50 portrait; mobile shows the Designer portrait until selection. Desktop neutral state still presents Designer work by default. Switching while reading preserves the current section's viewport position.
 
-Eye, nose and mouth positions were measured locally to register the two faces with uniform scaling, a slight rotation and translation. The original PNG files are unchanged; the site applies fixed responsive CSS transforms. A feathered mask blends the center instead of drawing a hard dividing line. A critically damped animation retains its velocity through rapid reversals, while a small central dead band prevents hover flicker. Reduced motion changes the selected image immediately without changing its registration. No face-analysis library, model or image upload is used by the published site.
+Designer projects and all original Prototype/Presentation destinations are preserved: Document Organizer, Roots, Bahrain Fort and Wajba. Developer projects are limited to Health Signal Detection System, Tawasual, TaqyeemPro and UOB Online Library Management System. Project dates and library details follow the owner's brief; technology, experience and education follow `Ebrahim_Resume__UX_.pdf`. Covers use typography and official local logos, not fabricated application screenshots. Both tracks use the same alternating project grid, media ratio, typography, tags and action family.
 
-A lightweight entry animation follows first-screen readiness. A page-shaped skeleton appears only if core styling or the hero images take more than 400ms to load. It clears as soon as those resources settle, with a six-second fail-safe even if the main script fails. Project images and fonts do not gate it. Content remains available without JavaScript.
+## Confidential project destinations
 
-All 31 skills and six category headers use bundled library icons or recognizable tool logos from Lucide, Simple Icons, Devicon and Balsamiq's official brand assets, styled in the same blue palette. Source licenses and attribution are in `THIRD_PARTY_NOTICES.md`. No external icon runtime or CDN is required.
+The owner confirmed NDA restrictions for the development projects. All eight Presentation/Website actions are native disabled buttons with `aria-disabled=true`; accompanying text explains confidentiality. No public project URLs were supplied or invented, and no future availability is promised. The resume supports web/dashboard deliverables for the first three projects; the library project is explicitly a Laravel web system. No Mobile App destination is claimed.
 
-The eight Prototype/Presentation buttons have larger click targets (at least 64px tall), a sliding blue background, rolling labels, exchanging arrows and selection-frame corners on hover or keyboard focus. Mobile buttons stack when space is limited. Decorative section indexes and editorial micro-labels remain removed.
+## Portraits and assets
 
-Let's talk, Get In Touch, View My Work and Download CV share this full-surface interaction. Primary actions use a strong navy fill; Download CV uses a distinct light blue surface. The mobile menu also includes a prominent Let's talk email button.
+Designer: `Painterly Emirati Portrait with Abstract Strokes.png`.
+Developer: `Modern Software Engineer Portrait.png`.
 
-The five navigation links are larger controls with rolling labels, blue fills, keyboard feedback and active-section states. The footer keeps the copyright line and provides an animated Back to top button.
+Both images occupy identical bounds with the same crop and object position. A feathered reveal mask animates with a critically damped spring; an outer mask softens the perimeter into the page. There is no border, outline or rounded frame. Reduced motion applies the destination immediately. Original images remain unchanged. The visible Designer image has high fetch priority; the Developer portrait is preloaded.
 
-Project links are maintained directly in their corresponding HTML articles. They open in new tabs. The trailing `and` typo in the supplied Wajba URL has been removed.
+Organization logos are stored locally as `logo-MoH.png`, `logo-iGA.png`, `logo-BQA.png` and `logo-UOB.png`, with sources in `THIRD_PARTY_NOTICES.md`. The health project includes both MoH and iGA branding. Logo aspect ratios are preserved inside restrained containers.
 
-Both CV links use the original `Ebrahim_Resume__UX_.pdf`. On desktop-sized windows (1024px or wider) with a fine pointer and hover support, the PDF opens in a new tab with the browser's PDF preview and download controls. Smaller windows and touch devices use the native download attribute. This adapts when the window is resized, and downloading remains the no-JavaScript fallback. Upload the PDF alongside the site.
+## Tools, skills and shared content
 
-Let's talk opens a concise hiring email draft, with editable role/company placeholders in the subject and fields for role details, work arrangement and the sender's contact information. Get In Touch opens a separate freelance project/meeting draft, including an editable project title, scope, timeline/budget, additional details, meeting time/location and sender contact fields. Both drafts are static, URL-encoded mailto links, so they also work without JavaScript. The generic email address link remains untemplated. Opening a draft does not send a message.
+The tools rail sits between About and Skills, switches with the portfolio path, loops continuously and pauses on hover/focus or with its Pause motion button. Reduced motion shows a wrapped static list and hides the decorative duplicate. Designer tools are Figma, FigJam, Balsamiq, Framer and Canva. Development tools and the Web & Mobile, Cloud & AI and Databases skill groups use resume-backed technologies. Collaboration is shared.
 
-The degree title follows the supplied resume: B.Sc. in Computer Science. Skills, experience and certification copy also follow the resume; no project metrics or seniority claims have been added.
+About, education, experience, contact and the CV stay shared. More in my CV uses the contact-detail interaction pattern. Desktop fine-pointer users preview the PDF in a new tab; touch/smaller-screen users download it. Mail links retain the existing hiring and freelance draft templates. Opening a draft does not send a message.
+
+## Accessibility and fallback
+
+Native buttons expose `aria-pressed`; an aria-live region announces committed selection. Hover previews do not change the active track. Keyboard focus stays on the initiating control. Portrait layers are decorative inside a single accessible portrait description. Existing skip navigation, semantic sections, active navigation, focus feedback, mobile menu/Escape, reduced motion, lazy project images and loading fail-safe remain.
+
+Without JavaScript, Designer projects, navigation, contact and PDF download remain available. External links retain new-tab protections. Google Fonts has system fallbacks. No framework or external animation runtime is added.
 
 ## Deployment
 
-For Cloudflare Pages, deploy this directory as a static site with no build command and the project root as the output directory. No framework, server, environment variables or runtime dependencies are needed. Google Fonts is the only external styling resource; system fonts provide a fallback.
-
-Production URL: https://ebromo2003-tech.github.io/Ebarhim-Ali-Portfolio/
-
-The remote repository uses its existing `.github/workflows/static.yml` to publish the static root on pushes to `main`. The local `deploy.yml` is an alternative workflow; avoid installing both in the same repository. Assets and the CV must remain beside the HTML files.
+The production repository's existing `.github/workflows/static.yml` deploys the static root on pushes to main. The workspace's `.github/workflows/deploy.yml` is an alternative workflow that explicitly packages HTML/CSS/JS/PNG/PDF files; do not install both simultaneously. All asset references are relative and retain their original case. QA files under `.qa/` are excluded from publishing.
 
 ## Verification
 
-Headless Chrome checked viewport widths 1440, 1280, 1024, 768, 430, 390 and 360 (height 960): no horizontal overflow, missing images, local HTTP errors or JavaScript exceptions.
+Chrome checks cover 1440×900, 1280×800, 1024×768, 768×1024, 430×932, 390×844 and 360×800 in both tracks. Checks include hover/focus versus committed selection, Enter, mobile selector and Escape, session persistence/query links, shared portrait geometry and 16:9 media, disabled NDA actions, scroll anchoring, motion controls, static reduced-motion tools, preserved Designer URLs, desktop CV preview, exact PDF response bytes, no-JavaScript fallback, horizontal overflow, local asset responses and JavaScript errors.
 
-Also checked: actual CV browser download (filename and bytes match the original), eight project action destinations and new-tab protections, email/phone/LinkedIn destinations, all section navigation states, mobile menu selection and Escape behavior, body scroll restoration, skip-link keyboard focus, reduced motion, and content availability without JavaScript.
-
-The current checks also cover pointer selection in empty space across both hero halves, intermediate wipe animation, identical portrait-layer bounds, the shared inset border, touch and keyboard portrait selection, 37 sourced SVG icons, minimum project-button heights, and hover feedback. Portrait registration and the new buttons/icons were reviewed in Chrome screenshots.
-
-Additional checks exercise slow-loading skeleton appearance/recovery, the six-second fallback with the app script blocked, the initial 50/50 portrait on all seven viewport widths, the five animated navigation links, and the footer's return-to-top action.
-
-The portrait-specific checks also measure rendered landmark registration, confirm fixed image bounds through every transition, exercise rapid reversals and central pointer jitter, and verify touch selection and reduced-motion geometry at all seven viewport widths.
-
-External Figma/Canva destination permissions and Lighthouse scores were not measured. Local QA tools, screenshots, original-file backup and detailed results live in the ignored `.qa/` directory and are not required for deployment.
+Detailed scripts, screenshots and results are in ignored `.qa/`. Lighthouse scores and authenticated access to external Figma/Canva destinations are not claimed.

@@ -1,4 +1,4 @@
-﻿/* Ebrahim Ali — color, layout and motion foundations */
+/* Ebrahim Ali — color, layout and motion foundations */
 :root{
   --blue-1:#EBEFFE;
   --blue-2:#DDE4FA;
@@ -934,25 +934,17 @@ footer{
 }
 .portrait-frame{
   /* Measured eye/nose/mouth registration: uniform scale + rotation + translation. */
-  --portrait-photo-transform:translate(-6.928027%,-7.246613%) matrix(1.1,0,0,1.1,0,0);
-  --portrait-art-transform:translate(-8.067831%,-1.592698%) matrix(1.07431349,-.01497971,.01497971,1.07431349,0,0);
+  --portrait-photo-transform:none;
+  --portrait-art-transform:none;
   position:relative;
   width:100%;
   aspect-ratio:1;
   overflow:hidden;
-  border-radius:46% 46% 16px 16px;
+  border-radius:0;
   background:var(--blue-2);
   isolation:isolate;
 }
-.portrait-frame::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  border:1.5px solid #38548a55;
-  border-radius:inherit;
-  pointer-events:none;
-  z-index:4;
-}
+.portrait-frame::after{display:none}
 .portrait-layer{
   position:absolute;
   inset:0;
@@ -1146,3 +1138,83 @@ footer{
   .nav-label>span[aria-hidden]{display:none}
 }
 
+
+/* One portfolio system: shared components, track-aware content. */
+[hidden]{display:none!important}
+.track-prompt{text-align:center;font-size:11px;letter-spacing:.12em;color:var(--ink-soft);margin:4px 0 0}
+.track-prompt span{display:block;font:500 16px/1.5 'Mona Sans',Arial,sans-serif;letter-spacing:0;margin-top:8px;color:var(--ink)}
+.track-status{text-align:center;font-size:12px;color:var(--ink-soft);min-height:20px;margin:12px 0 8px}
+.role-hint{font-size:12px;color:var(--action);margin-top:16px;display:block}
+.role-switch[aria-pressed=true]::after{transform:scaleX(1);opacity:1;height:3px}
+.portrait-frame{border:0;background:transparent;border-radius:0;mask-image:linear-gradient(to bottom,#000 0%,#000 83%,transparent 100%)}
+.portrait-layer img{border:0;border-radius:0;object-fit:cover;object-position:50% 50%;transform:none!important}
+.portrait-layer-art{transition:none}
+.nav-track-switch{display:flex;gap:2px;padding:4px;border:1px solid var(--line);border-radius:9px;background:var(--blue-2)}
+.nav-track-switch button{border:0;border-radius:5px;min-height:36px;padding:6px 10px;background:transparent;font-size:12px;cursor:pointer;white-space:nowrap}
+.nav-track-switch button[aria-pressed=true]{background:var(--ink);color:white;box-shadow:0 2px 5px #18264515}
+.nav-track-switch button[aria-pressed=true]::before{content:'•';margin-right:5px}
+.nav-track-switch button:hover:not([aria-pressed=true]){background:var(--blue-3)}
+.track-menu{display:flex;align-items:center}
+.developer-media{aspect-ratio:16/9;padding:28px;display:flex;flex-direction:column;justify-content:space-between;position:relative;min-width:0;background:#edf0f6;border:1px solid var(--line)}
+.developer-media::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#18264505 1px,transparent 1px),linear-gradient(90deg,#18264505 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(90deg,transparent,#000)}
+.dev-cover-top,.dev-cover-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:1}
+.dev-cover-top>.mono{font-size:11px;text-align:right;max-width:130px}
+.org-logo,.partner-logo{display:flex;align-items:center;justify-content:flex-start;width:142px;height:38px;flex:none}
+.org-logo img,.partner-logo img{width:auto;max-width:100%;height:auto;max-height:100%;aspect-ratio:auto;object-fit:contain;transition:none}
+.org-logo[data-org=UOB]{width:52px;height:52px}
+.project-media:hover .org-logo img,.project-media:hover .partner-logo img{transform:none}
+.dev-cover-main{position:relative;z-index:1;padding:18px 0;max-width:90%}
+.dev-cover-main>.mono{font-size:10px;letter-spacing:.08em;color:var(--ink-soft)}
+.dev-cover-main h3{font-size:clamp(24px,2.6vw,39px);line-height:1.12;letter-spacing:-.04em;margin:10px 0}
+.dev-cover-main p{font-size:12px;line-height:1.45;margin:0;max-width:34ch;color:var(--ink-soft)}
+.dev-cover-bottom{border-top:1px solid var(--line);padding-top:12px;font:11px/1.4 'Chivo Mono',monospace;color:var(--ink-soft)}
+.dev-cover-bottom>span:last-child{font:24px/1 Arial}
+.project-date{font-family:'Chivo Mono',monospace;font-size:12px!important}
+.project-confidential{margin-top:16px}
+.confidential-badge{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--action)}
+.project-confidential p{font-size:12px;line-height:1.6;color:var(--ink-soft);margin:7px 0 0;max-width:44ch}
+.project-button.confidential-action{cursor:not-allowed;opacity:.55;min-width:0;text-align:left}
+.project-button.confidential-action .project-button-arrow{background:var(--blue-3);color:var(--ink)}
+.project-button.confidential-action:is(:hover,:active){transform:none;background:var(--blue-1);box-shadow:none;border-color:var(--line)}
+.project-button.confidential-action .project-button-face::before,.project-button.confidential-action .button-handles{display:none}
+.project-button.confidential-action:hover .project-button-label>span,.project-button.confidential-action:hover .project-button-arrow svg{transform:none}
+.project-button.confidential-action .project-button-arrow svg:last-child{display:none}
+.cv-contact{border-top:1px solid var(--line);margin-top:28px;padding-top:20px;max-width:390px}
+.cv-contact>.mono{display:block;font-size:12px;color:var(--ink-soft)}
+.cv-contact a{display:flex;align-items:center;justify-content:space-between;padding:10px 0;text-decoration:none;font-size:22px}
+.cv-contact a span{transition:transform .22s var(--ease)}
+.cv-contact a:hover{color:var(--action)}.cv-contact a:hover span{transform:translate(3px,-3px)}
+.tool-section{padding:64px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.tool-section h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.045em}
+.tool-section .section-head{margin-bottom:24px}
+.tools-pause{border:1px solid var(--line);border-radius:6px;min-height:44px;padding:10px 16px;background:transparent;font-size:12px;cursor:pointer;margin:0 0 24px}
+.tools-pause:hover{background:var(--blue-3)}
+.tool-marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);padding:6px 0}
+.tool-belt{display:flex;width:max-content;animation:tool-drift 38s linear infinite}
+.tool-set{display:flex;justify-content:space-around;gap:18px;padding-right:18px}
+.tool-chip{display:flex;align-items:center;gap:12px;padding:19px 24px;background:var(--blue-2);border:1px solid var(--line);border-radius:8px;font-size:17px;white-space:nowrap;transition:transform .22s var(--ease),background .22s var(--ease)}
+.tool-chip:hover{transform:translateY(-3px);background:var(--blue-3)}
+.tool-chip svg{width:26px;height:26px;flex:none;fill:currentColor}.tool-chip svg.icon-stroke{fill:none}
+.tool-marquee:hover .tool-belt,.tool-marquee:focus-within .tool-belt,.tool-section.is-paused .tool-belt{animation-play-state:paused}
+@keyframes tool-drift{to{transform:translateX(-50%)}}
+body[data-track=developer] .tool-chip,body[data-track=developer] .skill-group{background:#eef1f7}
+body[data-track=developer] .project-tags{font-family:'Chivo Mono',monospace;font-size:12px}
+@media(max-width:1370px){.header-contact.cta-nav{display:none}.nav-wrap{gap:14px}.nav-links{gap:4px}}
+@media(min-width:768px) and (max-width:1100px){.discipline h2{font-size:clamp(42px,6vw,67px)}.hero-stage{grid-template-columns:1fr 1.15fr 1fr}.nav-wrap{flex-wrap:wrap;justify-content:center;padding-block:16px}.brand{margin-right:auto}.nav-links{flex-wrap:wrap;justify-content:center}.nav-track-switch button{font-size:11px}.developer-media{padding:20px}.dev-cover-main h3{font-size:25px}.dev-cover-main{padding:12px 0}.dev-cover-top>.mono{max-width:95px}.org-logo,.partner-logo{width:110px;height:30px}}
+@media(max-width:767px){
+ .hero>.wrap{display:flex;flex-direction:column}.hero-bottom{display:contents}.hero-bottom>div:first-child{order:-3}.hero-bottom h1{font-size:34px;letter-spacing:-.055em}.identity{font-size:12px;margin-bottom:20px}
+ .track-prompt{order:-2;text-align:left;margin-top:0}.track-prompt span{font-size:16px;margin-top:6px}.track-status{order:-1;text-align:left;margin:10px 0 0}
+ .hero-stage{order:0;margin-top:16px;grid-template-columns:1fr 1fr;gap:12px;border-bottom:0}.hero-copy{order:1;padding:24px 0 36px}.hero-copy>p{font-size:15px}
+ .discipline,.discipline.right{text-align:left;padding:14px 12px;border:1px solid var(--line);border-radius:8px;background:var(--blue-2);justify-content:flex-start}
+ .discipline:has([aria-pressed=true]){border-color:var(--action);background:var(--blue-3)}.discipline h2{font-size:clamp(26px,7vw,38px);letter-spacing:-.05em}.role-switch{padding:0 0 6px}.discipline p{font-size:10px;margin-top:6px;margin-left:0!important}.role-hint{font-size:10px;margin-top:8px}
+ .portrait{width:100%;max-width:430px;margin:4px auto 0;grid-row:2;grid-column:1/-1}.portrait-frame{aspect-ratio:1.05}.portrait-layer img{object-position:center}
+ .nav-wrap{justify-content:space-between}.nav-track-switch{width:100%;gap:6px}.nav-track-switch button{flex:1;min-height:44px;font-size:14px}.track-menu{padding:12px 0 4px}
+ .developer-media{padding:24px;aspect-ratio:16/9}.dev-cover-main{padding:12px 0;max-width:100%}.dev-cover-main h3{font-size:clamp(23px,6vw,32px);margin:8px 0}.dev-cover-main p{font-size:10px}.dev-cover-main>.mono{font-size:9px}.dev-cover-bottom{padding-top:10px;font-size:9px}.org-logo,.partner-logo{width:115px;height:28px}.org-logo[data-org=UOB]{width:36px;height:36px}.dev-cover-top>.mono{font-size:9px}.tool-section{padding:40px 0}.tool-section .section-head{display:block}.tool-section .section-head p{margin-top:16px}.tool-chip{font-size:15px;padding:16px 20px}.tools-pause{margin-bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ .tool-belt{animation:none!important;width:100%}.tool-marquee{overflow:visible;mask-image:none;padding-inline:20px}.tool-set{min-width:0!important;width:100%;flex-wrap:wrap;justify-content:center;padding:0;gap:12px}.tool-set[aria-hidden=true]{display:none}.tools-pause{display:none}.tool-chip:hover{transform:none}.role-switch{transition:none}
+}
+body:not(.js) .track-menu,body:not(.js) .tools-pause{display:none}
+/* Fade the portrait perimeter into the shared page instead of exposing a square image edge. */
+.portrait-frame{mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent),linear-gradient(to bottom,transparent,#000 7%,#000 83%,transparent);mask-composite:intersect}
+body:not(.js) .hero-stage{--portrait-reveal:100%}
