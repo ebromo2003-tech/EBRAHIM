@@ -168,15 +168,6 @@ window.addEventListener('popstate', () => {
 let initialTrack = new URL(location.href).searchParams.get('track');
 try { if (!portfolioData[initialTrack]) initialTrack = sessionStorage.getItem('portfolio-track'); } catch {}
 setPortfolioTrack(portfolioData[initialTrack] ? initialTrack : 'designer', { persist: false, announce: Boolean(portfolioData[initialTrack]), animate: false, committed: Boolean(portfolioData[initialTrack]) });
-// Continuous motion can be paused independently of the system motion preference.
-const toolsSection = document.querySelector('.tool-section');
-const toolsPause = document.querySelector('.tools-pause');
-toolsPause.addEventListener('click', () => {
-  const paused = toolsPause.getAttribute('aria-pressed') !== 'true';
-  toolsPause.setAttribute('aria-pressed', String(paused));
-  toolsPause.textContent = paused ? 'Resume motion ▷' : 'Pause motion Ⅱ';
-  toolsSection.classList.toggle('is-paused', paused);
-});
 // Keep each repeated rail wide enough for the viewport without adding accessible duplicates.
 function sizeToolRails() {
   document.querySelectorAll('.tool-marquee .tool-set').forEach(set => {

@@ -28,7 +28,7 @@ Organization logos are stored locally as `logo-MoH.png`, `logo-iGA.png`, `logo-B
 
 ## Tools, skills and shared content
 
-The tools rail sits between About and Skills, switches with the portfolio path, loops continuously and pauses on hover/focus or with its Pause motion button. Reduced motion shows a wrapped static list and hides the decorative duplicate. Designer tools are Figma, FigJam, Balsamiq, Framer and Canva. Development tools and the Web & Mobile, Cloud & AI and Databases skill groups use resume-backed technologies. Collaboration is shared.
+The tools rail sits between About and Skills, switches with the portfolio path, loops continuously and pauses on hover/focus . Reduced motion shows a wrapped static list and hides the decorative duplicate. Designer tools are Figma, FigJam, Balsamiq, Framer and Canva. Development tools and the Web & Mobile, Cloud & AI and Databases skill groups use resume-backed technologies. Collaboration is shared.
 
 About, education, experience, contact and the CV stay shared. More in my CV uses the contact-detail interaction pattern. Desktop fine-pointer users preview the PDF in a new tab; touch/smaller-screen users download it. Mail links retain the existing hiring and freelance draft templates. Opening a draft does not send a message.
 
@@ -44,6 +44,9 @@ The production repository's existing `.github/workflows/static.yml` deploys the 
 
 ## Verification
 
-Chrome checks cover 1440×900, 1280×800, 1024×768, 768×1024, 430×932, 390×844 and 360×800 in both tracks. Checks include hover/focus versus committed selection, Enter, mobile selector and Escape, session persistence/query links, shared portrait geometry and 16:9 media, disabled NDA actions, scroll anchoring, motion controls, static reduced-motion tools, preserved Designer URLs, desktop CV preview, exact PDF response bytes, no-JavaScript fallback, horizontal overflow, local asset responses and JavaScript errors.
+Chrome checks cover 1440×900, 1280×800, 1024×768, 768×1024, 430×932, 390×844 and 360×800 in both tracks. Checks include hover/focus versus committed selection, Enter, mobile selector and Escape, session persistence/query links, shared portrait geometry and 16:9 media, disabled NDA actions, scroll anchoring, hover/focus motion pause, static reduced-motion tools, preserved Designer URLs, desktop CV preview, exact PDF response bytes, no-JavaScript fallback, horizontal overflow, local asset responses and JavaScript errors.
 
 Detailed scripts, screenshots and results are in ignored `.qa/`. Lighthouse scores and authenticated access to external Figma/Canva destinations are not claimed.
+
+
+The hero now pairs a generous portrait with two complete, clickable project-path panels. Each names the discipline, its four projects and a clear Explore work action. Tools use circular icon-and-label medallions; the separate Pause motion button is removed at the owner’s request. Hover/focus still pauses the rail and reduced motion still produces a static list.
